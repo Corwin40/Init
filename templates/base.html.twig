@@ -1,41 +1,43 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="UTF-8">
-        <title>{% block title %}Welcome!{% endblock %}</title>
-        {% block stylesheets %}
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}Welcome!{% endblock %}</title>
+    {% block stylesheets %}
+        {{ encore_entry_link_tags('app') }}
+    {% endblock %}
+</head>
+<body>
+<header>
+    {% block header %}
+    {% endblock %}
+</header>
+<main>
+    <aside>
+        {% block aside %}
         {% endblock %}
-    </head>
-    <body>
-    <header>
-        {% block header %}
-        {% endblock %}
-    </header>
-    <main>
-        <aside>
-            {% block aside %}
+    </aside>
+    <div id="content">
+        <div id="mainheader">
+            {% block mainheader %}
             {% endblock %}
-        </aside>
-        <div id="content">
-            <div id="mainheader">
-                {% block mainheader %}
-                {% endblock %}
-            </div>
-            <div id="maincontent">
-                {% block maincontent %}
-                {% endblock %}
-            </div>
-            <div id="mainfooter">
-                {% block mainfooter %}
-                {% endblock %}
-            </div>
         </div>
-    </main>
-    <footer>
-        {% block footer %}
-        {% endblock %}
-    </footer>
-        {% block javascripts %}
-        {% endblock %}
-    </body>
+        <div id="maincontent">
+            {% block maincontent %}
+            {% endblock %}
+        </div>
+        <div id="mainfooter">
+            {% block mainfooter %}
+            {% endblock %}
+        </div>
+    </div>
+</main>
+<footer>
+    {% block footer %}
+    {% endblock %}
+</footer>
+{% block javascripts %}
+    {{ encore_entry_script_tags('app') }}
+{% endblock %}
+</body>
 </html>
