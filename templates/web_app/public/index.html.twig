@@ -1,0 +1,19 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello PublicController!{% endblock %}
+
+{% block mainheader %}
+    <div>
+        <h1>Partie public ! ✅</h1>
+    </div>
+{% endblock %}
+
+{% block maincontent %}
+    <div class="example-wrapper">
+        This friendly message is coming from:
+        <ul>
+            <li>Your controller at <code><a href="{{ '/mnt/Data_Linux_Win/Dev/Symfony5/init/src/Controller/WebAdmin/AdminController.php'|file_link(0) }}">src/Controller/WebAdmin/AdminController.php</a></code></li>
+            <li>Your template at <code><a href="{{ '/mnt/Data_Linux_Win/Dev/Symfony5/init/templates/web_admin/admin/index.html.twig'|file_link(0) }}">templates/web_admin/admin/index.html.twig</a></code></li>
+        </ul>
+    </div>
+{% endblock %}

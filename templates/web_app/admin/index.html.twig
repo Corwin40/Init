@@ -2,10 +2,14 @@
 
 {% block title "Administration"%}
 
-{% block content %}
-<div class="example-wrapper">
-    <h1>Hello ! ✅</h1>
+{% block mainheader %}
+<div>
+    <h1>Partie d'administration ! ✅</h1>
+</div>
+{% endblock %}
 
+{% block maincontent %}
+<div class="example-wrapper">
     This friendly message is coming from:
     <ul>
         <li>Your controller at <code><a href="{{ '/mnt/Data_Linux_Win/Dev/Symfony5/init/src/Controller/WebAdmin/AdminController.php'|file_link(0) }}">src/Controller/WebAdmin/AdminController.php</a></code></li>
