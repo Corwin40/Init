@@ -13,9 +13,17 @@
     "license": "UNLICENSED",
     "private": true,
     "scripts": {
-        "dev-server": "encore dev-server",
+        "dev-server": "encore dev-server --port 8080",
         "dev": "encore dev",
         "watch": "encore dev --watch",
         "build": "encore production --progress"
+    },
+    "dependencies": {
+        "@babel/core": "^7.8.7",
+        "@babel/preset-react": "^7.8.3",
+        "axios": "^0.19.2",
+        "react": "^16.13.0",
+        "react-dom": "^16.13.0",
+        "react-router-dom": "^5.1.2"
     }
 }
