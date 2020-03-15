@@ -3,17 +3,15 @@
 {% block title "Administration"%}
 
 {% block mainheader %}
-<div>
-    <h1>Partie d'administration ! ✅</h1>
+<div class="container">
+    <dic class="row">
+        <div class="col12">
+            <h1>Partie d'administration ! ✅</h1>
+        </div>
+    </dic>
 </div>
 {% endblock %}
 
 {% block maincontent %}
-<div class="example-wrapper">
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code><a href="{{ '/mnt/Data_Linux_Win/Dev/Symfony5/init/src/Controller/WebAdmin/AdminController.php'|file_link(0) }}">src/Controller/WebAdmin/AdminController.php</a></code></li>
-        <li>Your template at <code><a href="{{ '/mnt/Data_Linux_Win/Dev/Symfony5/init/templates/web_admin/admin/index.html.twig'|file_link(0) }}">templates/web_admin/admin/index.html.twig</a></code></li>
-    </ul>
-</div>
+
 {% endblock %}
