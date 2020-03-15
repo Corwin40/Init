@@ -4,9 +4,17 @@ namespace App\Entity\WebApp;
 
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\UserInterface;
+use ApiPlatform\Core\Annotation\ApiResource;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\WebApp\UserRepository")
+ *
+ * @ApiResource(
+ *     normalizationContext={
+ *          "groups"={"users_reader"}
+ *     }
+ * )
  */
 class User implements UserInterface
 {
@@ -14,11 +22,15 @@ class User implements UserInterface
      * @ORM\Id()
      * @ORM\GeneratedValue()
      * @ORM\Column(type="integer")
+     *
+     * @Groups({"users_read"})
      */
     private $id;
 
     /**
      * @ORM\Column(type="string", length=180, unique=true)
+     *
+     * @Groups({"users_read"})
      */
     private $email;
 
@@ -30,18 +42,34 @@ class User implements UserInterface
     /**
      * @var string The hashed password
      * @ORM\Column(type="string")
+     *
+     * @Groups({"users_read"})
      */
     private $password;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
+     *
+     * @Groups({"users_read"})
      */
     private $firstName;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
+     *
+     * @Groups({"users_read"})
      */
     private $lastName;
+
+    /**
+     * @ORM\Column(type="datetime", nullable=true)
+     */
+    private $createAt;
+
+    /**
+     * @ORM\Column(type="datetime", nullable=true)
+     */
+    private $UpdateAt;
 
     public function getId(): ?int
     {
@@ -141,6 +169,30 @@ class User implements UserInterface
     public function setLastName(?string $lastName): self
     {
         $this->lastName = $lastName;
+
+        return $this;
+    }
+
+    public function getCreateAt(): ?\DateTimeInterface
+    {
+        return $this->createAt;
+    }
+
+    public function setCreateAt(?\DateTimeInterface $createAt): self
+    {
+        $this->createAt = $createAt;
+
+        return $this;
+    }
+
+    public function getUpdateAt(): ?\DateTimeInterface
+    {
+        return $this->UpdateAt;
+    }
+
+    public function setUpdateAt(?\DateTimeInterface $UpdateAt): self
+    {
+        $this->UpdateAt = $UpdateAt;
 
         return $this;
     }
