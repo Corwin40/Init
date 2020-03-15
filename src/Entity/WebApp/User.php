@@ -3,9 +3,11 @@
 namespace App\Entity\WebApp;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\UserInterface;
 use ApiPlatform\Core\Annotation\ApiResource;
 use Symfony\Component\Serializer\Annotation\Groups;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\WebApp\UserRepository")
@@ -15,6 +17,7 @@ use Symfony\Component\Serializer\Annotation\Groups;
  *          "groups"={"users_read"}
  *     }
  * )
+ * @UniqueEntity("email", message="Cet utilisateur existe déja.")
  */
 class User implements UserInterface
 {
