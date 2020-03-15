@@ -12,7 +12,7 @@ use Symfony\Component\Serializer\Annotation\Groups;
  *
  * @ApiResource(
  *     normalizationContext={
- *          "groups"={"users_reader"}
+ *          "groups"={"users_read"}
  *     }
  * )
  */
@@ -63,11 +63,15 @@ class User implements UserInterface
 
     /**
      * @ORM\Column(type="datetime", nullable=true)
+     *
+     * @Groups({"users_read"})
      */
     private $createAt;
 
     /**
      * @ORM\Column(type="datetime", nullable=true)
+     *
+     * @Groups({"users_read"})
      */
     private $UpdateAt;
 
