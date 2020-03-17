@@ -3,8 +3,8 @@ import NavBar from "./components/Navbar";
 import React from "react";
 import ReactDOM from "react-dom";
 import HomePage from "./pages/HomePage";
-import UsersPage from "./pages/WebApp/UsersPage";
 import {HashRouter, Switch, Route} from "react-router-dom";
+import UsersPage from "./pages/WebApp/UsersPage";
 
 //Appel Bootstrap - JQuery && dépendances
 const $ = require('jquery');
@@ -19,7 +19,7 @@ const Admin =() => {
 
             <main className="container-fluid pt-5">
                 <Switch>
-                    <route path="/users" component={UsersPage}/>
+                    <Route path="/users" component={UsersPage} />
                     <Route path="/" component={HomePage}/>
                 </Switch>
             </main>
