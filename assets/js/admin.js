@@ -2,6 +2,7 @@ import '../css/admin.scss';
 import NavBar from "./components/Navbar";
 import React from "react";
 import ReactDOM from "react-dom";
+import HomePage from "./pages/HomePage";
 
 //Appel Bootstrap - JQuery && dépendances
 const $ = require('jquery');
@@ -13,6 +14,10 @@ const Admin =() => {
     return (
         <>
             <NavBar/>
+
+            <main className="container-fluid pt-5">
+                <HomePage/>
+            </main>
         </>
     );
 };
