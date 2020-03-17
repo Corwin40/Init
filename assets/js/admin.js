@@ -4,7 +4,8 @@ import React from "react";
 import ReactDOM from "react-dom";
 import HomePage from "./pages/HomePage";
 import {HashRouter, Switch, Route} from "react-router-dom";
-import UsersPage from "./pages/WebApp/UsersPage";
+import UsersPage from "./pages/WebApp/Users/UsersPage";
+import UserPage from "./pages/WebApp/Users/userPage";
 
 //Appel Bootstrap - JQuery && dépendances
 const $ = require('jquery');
@@ -19,7 +20,9 @@ const Admin =() => {
 
             <main className="container-fluid pt-5">
                 <Switch>
+                    <Route path="/users/:id" component={UserPage} />
                     <Route path="/users" component={UsersPage} />
+
                     <Route path="/" component={HomePage}/>
                 </Switch>
             </main>

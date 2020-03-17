@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react';
-import Pagination from "../../components/Pagination";
-import UsersAPI from "../../services/WebApp/UsersAPI";
+import moment from "moment";
+import Pagination from "../../../components/Pagination";
+import UsersAPI from "../../../services/WebApp/UsersAPI";
+import {Link} from "react-router-dom";
 
 const UsersPage = (props) => {
 
@@ -22,6 +24,8 @@ const UsersPage = (props) => {
     useEffect(() => {
         fetchUsers();
     }, []);
+
+    const formatDate = (str) => moment(str).format('DD/MM/YYYY');
 
     // mise en place de la fonction de suppression d'un customer
     const handleDelete = async id => {
@@ -62,7 +66,10 @@ const UsersPage = (props) => {
 
     return(
         <>
-            <h1>Liste des utilisateurs</h1>
+            <div className="d-flex justify-content-between align-items-center mb-3">
+                <h1>Tableau de bord : <small>Gestion des utilisateurs</small></h1>
+                <Link to="/adherents/new" className="btn btn-sm btn-secondary">Ajouter un adhérent</Link>
+            </div>
 
             <div className="form-group">
                 <input type="text" onChange={handleSearch} value={search} className="form-control" placeholder="Rechercher ..."/>
@@ -87,10 +94,11 @@ const UsersPage = (props) => {
                         <td><a href="#">{user.firstName} {user.lastName}</a></td>
                         <td>{user.email}</td>
                         <td></td>
-                        <td>{user.createat}</td>
-                        <td>{user.updateat}</td>
+                        <td>{formatDate(user.createAt)}</td>
+                        <td>{formatDate(user.updateAt)}</td>
 
                         <td>
+                            <Link className="btn btn-sm btn-info mr-1" to={"/users/" + user.id}>Editer</Link>
                             <button
                                 onClick={() => handleDelete(user.id)}                       // Active la fonction "handleDelete"
                                 // disabled={user.invoices.length > 0}                         // Désactive le bouton si le nombre de facture est supérieur à zéro
