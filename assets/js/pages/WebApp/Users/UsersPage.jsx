@@ -32,7 +32,7 @@ const UsersPage = (props) => {
         const originalUsers = [...users];                        // copie du tableau des customers
         setUsers(users.filter(user => user.id !== id));
         try {
-            await UsersAPI.deleteCustomers(id);
+            await UsersAPI.delete;
         }catch(error){
             setUsers(originalUsers);
             console.log(error.response);
@@ -68,7 +68,7 @@ const UsersPage = (props) => {
         <>
             <div className="d-flex justify-content-between align-items-center mb-3">
                 <h1>Tableau de bord : <small>Gestion des utilisateurs</small></h1>
-                <Link to="/adherents/new" className="btn btn-sm btn-secondary">Ajouter un adhérent</Link>
+                <Link to="/" className="btn btn-sm btn-secondary">Ajouter un adhérent</Link>
             </div>
 
             <div className="form-group">
@@ -98,10 +98,9 @@ const UsersPage = (props) => {
                         <td>{formatDate(user.updateAt)}</td>
 
                         <td>
-                            <Link className="btn btn-sm btn-info mr-1" to={"/users/" + user.id}>Editer</Link>
+                            <Link className="btn btn-sm btn-primary mr-1" to={"/users/" + user.id}>Editer</Link>
                             <button
                                 onClick={() => handleDelete(user.id)}                       // Active la fonction "handleDelete"
-                                // disabled={user.invoices.length > 0}                         // Désactive le bouton si le nombre de facture est supérieur à zéro
                                 className="btn btn-sm btn-danger">Supprimer</button></td>
                     </tr>
                 ))}

@@ -20,6 +20,7 @@ const Admin =() => {
 
             <main className="container-fluid pt-5">
                 <Switch>
+
                     <Route path="/users/:id" component={UserPage} />
                     <Route path="/users" component={UsersPage} />
 

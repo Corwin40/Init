@@ -12,23 +12,21 @@ const UserPage = ({match, history}) => {
         firstName: "",
         lastName:"",
         email:"",
-        phone:"",
-        nfcUniq:""
+        updateAt:""
     });
 
     const [errors, setErrors] = useState({
         firstName: "",
         lastName:"",
         email:"",
-        phone:"",
-        nfcUniq:""
+        updateAt:""
     });
 
     // Récupère les données correspondant à l'id transmise pour une modification
     const fetchUser = async id =>{
         try{
-            const {firstName, lastName, email, phone, nfcUniq} = await UsersAPI.findOne(id);
-            setUser({firstName, lastName, email, phone, nfcUniq})
+            const {firstName, lastName, email, updateAt} = await UsersAPI.findOne(id);
+            setUser({firstName, lastName, email,updateAt})
         } catch (error) {
             console.log(error.response);
         }
@@ -50,9 +48,9 @@ const UserPage = ({match, history}) => {
         event.preventDefault();
         try {
             if (editing) {
-                const response = await UsersAPI.updateOne(id, member);
+                const response = await UsersAPI.updateOne(id, user);
             }else{
-                const response = await UsersAPI.newOne(member);
+                const response = await UsersAPI.newOne(user);
                 setErrors({});
 
                 history.replace("/users");
@@ -80,7 +78,7 @@ const UserPage = ({match, history}) => {
             <form onSubmit={handleSubmit}>
                 <Field
                     name="firstName"
-                    label="Prénom de l'adhérent"
+                    label="Prénom de l'utilisateur"
                     placeholder="Entrer le prénom"
                     type="text"
                     value={user.firstName}
@@ -89,7 +87,7 @@ const UserPage = ({match, history}) => {
                 />
                 <Field
                     name="lastName"
-                    label="Nom de l'adhérent"
+                    label="Nom de l'utilisateur"
                     placeholder="Entrer le nom"
                     type="text"
                     value={user.lastName}
@@ -98,7 +96,7 @@ const UserPage = ({match, history}) => {
                 />
                 <Field
                     name="email"
-                    label="E-mail de l'adhérent"
+                    label="E-mail de l'utilisateur"
                     placeholder="Entrer l'E-mail"
                     type="email"
                     value={user.email}
@@ -106,26 +104,18 @@ const UserPage = ({match, history}) => {
                     error={errors.email}
                 />
                 <Field
-                    name="phone"
-                    label="Contact téléphonique"
-                    placeholder="00.00.00.00.00"
-                    type="text"
-                    value={user.phone}
+                    name="updateAt"
+                    label="Mise à jour"
+                    type="date"
+                    value={user.updateAt}
                     onChange={handleChange}
-                    error={errors.phone}
-                />
-                <Field
-                    name="nfcUniq"
-                    label="Identifiant"
-                    placeholder=""
-                    type="text"
-                    value={user.nfcUniq}
-                    onChange={handleChange}
+                    error={errors.updateAt}
                 />
 
                 <div className="form-group">
-                    <button className="btn btn-sm btn-success mr-1">Ajouter</button>
-                    <Link to="/adherents" className="btn btn-sm btn-secondary">Retour à la liste</Link>
+                    {!editing && <button className="btn btn-sm btn-success mr-1">Ajouter</button> || <button className="btn btn-sm btn-success mr-1">Modifier</button>}
+
+                    <Link to="/users" className="btn btn-sm btn-secondary">Retour à la liste</Link>
                 </div>
 
 
