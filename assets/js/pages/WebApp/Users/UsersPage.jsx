@@ -4,6 +4,7 @@ import Pagination from "../../../components/Pagination";
 import UsersAPI from "../../../services/WebApp/UsersAPI";
 import {Link} from "react-router-dom";
 
+
 const UsersPage = (props) => {
 
     // Déclaration des constantes React
@@ -32,7 +33,7 @@ const UsersPage = (props) => {
         const originalUsers = [...users];                        // copie du tableau des customers
         setUsers(users.filter(user => user.id !== id));
         try {
-            await UsersAPI.delete;
+            await UsersAPI.delete(id);
         }catch(error){
             setUsers(originalUsers);
             console.log(error.response);

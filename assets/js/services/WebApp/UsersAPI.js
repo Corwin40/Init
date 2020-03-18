@@ -31,5 +31,5 @@ export default {
     findOne,
     newOne,
     updateOne,
-    delete: deleteUsers()
+    delete:deleteUsers
 };
