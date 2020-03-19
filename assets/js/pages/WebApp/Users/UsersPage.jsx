@@ -82,7 +82,6 @@ const UsersPage = (props) => {
                     <th>id</th>
                     <th>Nom et Prénom</th>
                     <th>Email</th>
-                    <th>Roles</th>
                     <th>Créer le</th>
                     <th>Modifier le</th>
                     <th></th>
@@ -94,7 +93,6 @@ const UsersPage = (props) => {
                         <td>{user.id}</td>
                         <td><a href="#">{user.firstName} {user.lastName}</a></td>
                         <td>{user.email}</td>
-                        <td>{user.role}</td>
                         <td>{formatDate(user.createAt)}</td>
                         <td>{formatDate(user.updateAt)}</td>
 

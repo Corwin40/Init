@@ -49,6 +49,7 @@ class User implements UserInterface
      * @ORM\Column(type="string")
      *
      * @Groups({"users_read"})
+     * @Assert\NotBlank(message="Vous devez entrez un mot de passe")
      */
     private $password;
 
@@ -56,6 +57,7 @@ class User implements UserInterface
      * @ORM\Column(type="string", length=255, nullable=true)
      *
      * @Groups({"users_read"})
+     * @Assert\Length(min=3, minMessage="le prénom doit contenir entre 3 et 255 caractères", max=255, maxMessage="le prénom doit contenir entre 3 et 255 caractères")
      */
     private $firstName;
 
@@ -63,6 +65,7 @@ class User implements UserInterface
      * @ORM\Column(type="string", length=255, nullable=true)
      *
      * @Groups({"users_read"})
+     * @Assert\Length(min=3, minMessage="Vous devez entrez un nom d'au moins 3 caractères", max=255, maxMessage="Vous devez entrez un nom au maximum 255 caractères")
      */
     private $lastName;
 
@@ -70,6 +73,7 @@ class User implements UserInterface
      * @ORM\Column(type="datetime", nullable=true)
      *
      * @Groups({"users_read"})
+     * @Assert\Date(message="Ce champs doit être une date au format JJ/MM/AAAA")
      */
     private $createAt;
 
@@ -77,8 +81,14 @@ class User implements UserInterface
      * @ORM\Column(type="datetime", nullable=true)
      *
      * @Groups({"users_read"})
+     * @Assert\Date(message="Ce champs doit être une date au format JJ/MM/AAAA")
      */
     private $UpdateAt;
+
+    /**
+     * @ORM\Column(type="boolean", nullable=true)
+     */
+    private $isActived;
 
     public function getId(): ?int
     {
@@ -202,6 +212,18 @@ class User implements UserInterface
     public function setUpdateAt(?\DateTimeInterface $UpdateAt): self
     {
         $this->UpdateAt = $UpdateAt;
+
+        return $this;
+    }
+
+    public function getIsActived(): ?bool
+    {
+        return $this->isActived;
+    }
+
+    public function setIsActived(?bool $isActived): self
+    {
+        $this->isActived = $isActived;
 
         return $this;
     }
