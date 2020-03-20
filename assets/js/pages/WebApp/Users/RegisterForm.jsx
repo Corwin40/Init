@@ -1,8 +1,8 @@
 import React, {useState, UseEffect} from 'react';
 import Field from "../../../components/forms/Fields";
 import {Link} from "react-router-dom";
-import UserAPI from "../../../services/WebApp/UsersAPI";
 import moment from 'moment';
+import UsersAPI from "../../../services/WebApp/UsersAPI";
 
 const RegisterForm = ({history}) => {
 
@@ -44,7 +44,7 @@ const RegisterForm = ({history}) => {
         }
 
         try{
-            const response = await UserAPI.register(user);
+            const response = await UsersAPI.register(user);
             setErrors({});
             history.replace("/login");
         } catch ({response}) {

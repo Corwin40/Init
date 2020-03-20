@@ -1,5 +1,10 @@
 import axios from 'axios';
 
+function register(user){
+    return axios
+        .post("http://localhost:8000/api/users", user);
+}
+
 function findAll() {
     return axios
         .get("http://localhost:8000/api/users")                 // Requete en GET
@@ -27,6 +32,7 @@ function deleteUsers(id) {
 }
 
 export default {
+    register,
     findAll:findAll,
     findOne,
     newOne,

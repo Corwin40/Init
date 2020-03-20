@@ -9,6 +9,7 @@ import UserPage from "./pages/WebApp/Users/userPage";
 import LoginPage from  "./pages/LoginPage";
 import RegisterForm from "./pages/WebApp/Users/RegisterForm";
 import AuthContext from "./contexts/AuthContext";
+import PrivateRoute from "./components/PrivateRoute";
 import authAPI from "./services/authAPI";
 
 //Appel Bootstrap - JQuery && dépendances
@@ -25,25 +26,35 @@ const Admin = () => {
         authAPI.isAuthenticated()
     );
 
-    const NavbarWithRouter = withRouter(Navbar);
+    const NavBarWithRouter = withRouter(NavBar);
 
     return (
+        <AuthContext.Provider value={{
+            isAuthenticated: isAuthenticated,
+            setIsAuthenticated: setIsAuthenticated
+        }}>
         <HashRouter>
-            <NavbarWithRouter/>
+            <NavBarWithRouter/>
 
             <main className="container-fluid pt-5">
                 <Switch>
 
-                    <Route path="/login" component={LoginPage} />
+                    <Route path="/login"
+                           render={props=>(<LoginPage onLogin={setIsAuthenticated} {...props} />
+                           )}
+                    />
                     <Route path="/register" component={RegisterForm}/>
 
-                    <Route path="/users/:id" component={UserPage} />
-                    <Route path="/users" component={UsersPage} />
+                    <PrivateRoute path="/users/:id" component={UserPage} />
+                    <PrivateRoute path="/users" component={UsersPage} />
 
-                    <Route path="/" component={HomePage}/>
+                    <Route path="/home" component={HomePage}/>
+
+                    <Route path="/" component={LoginPage}/>
                 </Switch>
             </main>
         </HashRouter>
+        </AuthContext.Provider>
     );
 };
 

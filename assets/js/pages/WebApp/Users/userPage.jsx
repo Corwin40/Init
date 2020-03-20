@@ -52,7 +52,6 @@ const UserPage = ({match, history}) => {
             }else{
                 const response = await UsersAPI.newOne(user);
                 setErrors({});
-
                 history.replace("/users");
             }
 

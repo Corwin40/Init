@@ -5,9 +5,12 @@ import {NavLink} from "react-router-dom";
 import AuthContext from "../contexts/AuthContext";
 import UsersAPI from "../services/WebApp/UsersAPI";
 
+authAPI.setup();
+
 const NavBar =({history}) => {
 
     const {isAuthenticated, setIsAuthenticated} = useContext(AuthContext);
+
     const [user, setUser] = useState([]);
 
     const handleLogout = () => {
@@ -18,7 +21,7 @@ const NavBar =({history}) => {
 
     return (
         <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
-            <NavLink className="navbar-brand" to="/">Init</NavLink>
+            <NavLink className="navbar-brand" to="/home">Init</NavLink>
             <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor02"
                     aria-controls="navbarColor02" aria-expanded="false" aria-label="Toggle navigation">
                 <span className="navbar-toggler-icon"></span>
@@ -31,22 +34,10 @@ const NavBar =({history}) => {
                     </li>
                 </ul>
                 <ul className="navbar-nav ml-auto">
-                    <li className="nav-item">
-                        <NavLink className="btn btn-secondary" to="/register">S'inscrire</NavLink>
-                    </li>
-                    <li className="nav-item">
-                        <NavLink className="btn btn-primary" to="/login">Connexion</NavLink>
-                    </li>
-                    <li className="nav-item">
-                        <button className="btn btn-success">Déconnection</button>
-                    </li>
-                </ul>
-
-                <ul className="navbar-nav ml-auto">
                     {(!isAuthenticated && (
                         <>
                             <li className="nav-item">
-                                <NavLink to="/Register" className="nav-link">
+                                <NavLink to="/Register" className="btn btn-secondary mr-1">
                                     Inscription
                                 </NavLink>
                             </li>
@@ -55,28 +46,19 @@ const NavBar =({history}) => {
                                     Connexion
                                 </NavLink>
                             </li>
+                            <li className="navitem">
+                                <button className="btn btn-danger" onClick={handleLogout}>se déconnecter</button>
+                            </li>
                         </>
                     )) || (
                         <>
                             <Dropdown>
                                 <Dropdown.Toggle variant="default" id="dropdown-basic">
-                                    Paramètres
-                                </Dropdown.Toggle>
-
-                                <Dropdown.Menu>
-                                    <Dropdown.Item href="#/Saisons">Saisons</Dropdown.Item>
-                                    <Dropdown.Item href="#/Cotisations">Cotisations</Dropdown.Item>
-                                    <Dropdown.Item href="#/Typecotisations">type de cotisations</Dropdown.Item>
-                                </Dropdown.Menu>
-                            </Dropdown>
-
-                            <Dropdown>
-                                <Dropdown.Toggle variant="default" id="dropdown-basic">
                                     Mon Compte
                                 </Dropdown.Toggle>
 
-                                <Dropdown.Menu>
-                                    <Dropdown.Item href="#/Saisons">Gestion du compte</Dropdown.Item>
+                                <Dropdown.Menu alignRight>
+                                    <Dropdown.Item href="#/home">Gestion du compte</Dropdown.Item>
                                     <Dropdown.Item onClick={handleLogout}>Déconnexion</Dropdown.Item>
                                 </Dropdown.Menu>
                             </Dropdown>

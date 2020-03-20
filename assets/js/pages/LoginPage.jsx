@@ -28,7 +28,7 @@ const LoginPage = ({ history }) => {
             await authAPI.authenticate(credentials);
             setError("");
             setIsAuthenticated(true);
-            history.replace("/");
+            history.replace("/home");
         }catch(error){
             console.log(error.response);
             setError("Aucun compte n'existe avec cette adresse ou les informations ne correspondent pas ! ")
@@ -38,7 +38,7 @@ const LoginPage = ({ history }) => {
         <>
             <h1>Page de connexion</h1>
 
-            <form>
+            <form onSubmit={handleSubmit}>
                 <Field
                     name="username"
                     label="Identifiant"

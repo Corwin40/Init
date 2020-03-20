@@ -15,7 +15,7 @@ use Symfony\Component\Validator\Constraints as Assert;
  * @ApiResource(
  *     normalizationContext={
  *          "groups"={"users_read"}
- *     }
+ *     },
  * )
  * @UniqueEntity("email", message="Cet utilisateur existe déja.")
  */
@@ -73,7 +73,8 @@ class User implements UserInterface
      * @ORM\Column(type="datetime", nullable=true)
      *
      * @Groups({"users_read"})
-     * @Assert\Date(message="Ce champs doit être une date au format JJ/MM/AAAA")
+     * @Assert\DateTime(message="la date doit être au format YYYY/MM/DD")
+     * @var string A "YYYY-mm-dd" formatted value
      */
     private $createAt;
 
@@ -81,7 +82,8 @@ class User implements UserInterface
      * @ORM\Column(type="datetime", nullable=true)
      *
      * @Groups({"users_read"})
-     * @Assert\Date(message="Ce champs doit être une date au format JJ/MM/AAAA")
+     * @Assert\DateTime(message="la date doit être au format YYYY/MM/DD")
+     * @var string A "YYYY-mm-dd" formatted value
      */
     private $UpdateAt;
 
@@ -197,7 +199,7 @@ class User implements UserInterface
         return $this->createAt;
     }
 
-    public function setCreateAt(?\DateTimeInterface $createAt): self
+    public function setCreateAt($createAt): self
     {
         $this->createAt = $createAt;
 
@@ -209,7 +211,7 @@ class User implements UserInterface
         return $this->UpdateAt;
     }
 
-    public function setUpdateAt(?\DateTimeInterface $UpdateAt): self
+    public function setUpdateAt($UpdateAt): self
     {
         $this->UpdateAt = $UpdateAt;
 
