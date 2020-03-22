@@ -85,12 +85,12 @@ class User implements UserInterface
      * @Assert\DateTime(message="la date doit être au format YYYY/MM/DD")
      * @var string A "YYYY-mm-dd" formatted value
      */
-    private $UpdateAt;
+    private $updateAt;
 
     /**
      * @ORM\Column(type="boolean", nullable=true)
      */
-    private $isActived;
+    private $isActive;
 
     public function getId(): ?int
     {
@@ -208,24 +208,24 @@ class User implements UserInterface
 
     public function getUpdateAt(): ?\DateTimeInterface
     {
-        return $this->UpdateAt;
+        return $this->updateAt;
     }
 
-    public function setUpdateAt($UpdateAt): self
+    public function setUpdateAt($updateAt): self
     {
-        $this->UpdateAt = $UpdateAt;
+        $this->updateAt = $updateAt;
 
         return $this;
     }
 
-    public function getIsActived(): ?bool
+    public function getIsActive(): ?bool
     {
         return $this->isActived;
     }
 
-    public function setIsActived(?bool $isActived): self
+    public function setIsActive(?bool $isActive): self
     {
-        $this->isActived = $isActived;
+        $this->isActive = $isActive;
 
         return $this;
     }
