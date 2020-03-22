@@ -54,8 +54,8 @@ const UsersPage = (props) => {
     // Moteur de recherche sur la requète
     const filteredUsers = users.filter(
         u =>
-            u.firstName.toLowerCase().includes(search.toLowerCase()) ||
-            u.lastName.toLowerCase().includes(search.toLowerCase())
+            u.firstname.toLowerCase().includes(search.toLowerCase()) ||
+            u.lastname.toLowerCase().includes(search.toLowerCase())
     );
 
     // mise en place de l'alimentation des pages de paginations
@@ -82,6 +82,7 @@ const UsersPage = (props) => {
                     <th>id</th>
                     <th>Nom et Prénom</th>
                     <th>Email</th>
+                    <th>compte actif</th>
                     <th>Créer le</th>
                     <th>Modifier le</th>
                     <th></th>
@@ -91,10 +92,11 @@ const UsersPage = (props) => {
                 {paginatedUsers.map(user => (                                                    // La fonction map = for de symfony, key = Sur quelle clé le map doit il opérer.
                     <tr key={user.id}>
                         <td>{user.id}</td>
-                        <td><a href="#">{user.firstName} {user.lastName}</a></td>
+                        <td><a href="#">{user.firstname} {user.lastname}</a></td>
                         <td>{user.email}</td>
-                        <td>{formatDate(user.createAt)}</td>
-                        <td>{formatDate(user.updateAt)}</td>
+                        <td>{user.isactive}</td>
+                        <td>{formatDate(user.createat)}</td>
+                        <td>{formatDate(user.updateat)}</td>
 
                         <td>
                             <Link className="btn btn-sm btn-primary mr-1" to={"/users/" + user.id}>Editer</Link>

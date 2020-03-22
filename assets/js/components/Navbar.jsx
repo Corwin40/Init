@@ -46,9 +46,6 @@ const NavBar =({history}) => {
                                     Connexion
                                 </NavLink>
                             </li>
-                            <li className="navitem">
-                                <button className="btn btn-danger" onClick={handleLogout}>se déconnecter</button>
-                            </li>
                         </>
                     )) || (
                         <>

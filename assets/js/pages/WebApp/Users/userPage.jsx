@@ -2,6 +2,7 @@ import React, {useState, useEffect} from 'react';
 import {Link} from "react-router-dom";
 import Field from "../../../components/forms/Fields";
 import UsersAPI from "../../../services/WebApp/UsersAPI";
+import moment from "moment";
 
 const UserPage = ({match, history}) => {
 
@@ -9,24 +10,24 @@ const UserPage = ({match, history}) => {
     const {id = "new" } = match.params;
 
     const [user, setUser] = useState({
-        firstName: "",
-        lastName:"",
+        firstname: "",
+        lastname:"",
         email:"",
-        updateAt:""
+        updateat:""
     });
 
     const [errors, setErrors] = useState({
-        firstName: "",
-        lastName:"",
+        firstname: "",
+        lastname:"",
         email:"",
-        updateAt:""
+        updateat:""
     });
 
     // Récupère les données correspondant à l'id transmise pour une modification
     const fetchUser = async id =>{
         try{
-            const {firstName, lastName, email, updateAt} = await UsersAPI.findOne(id);
-            setUser({firstName, lastName, email,updateAt})
+            const {firstname, lastname, email, updateat} = await UsersAPI.findOne(id);
+            setUser({firstname, lastname, email, updateat})
         } catch (error) {
             console.log(error.response);
         }
@@ -80,18 +81,18 @@ const UserPage = ({match, history}) => {
                     label="Prénom de l'utilisateur"
                     placeholder="Entrer le prénom"
                     type="text"
-                    value={user.firstName}
+                    value={user.firstname}
                     onChange={handleChange}
-                    error={errors.firstName}
+                    error={errors.firstname}
                 />
                 <Field
                     name="lastName"
                     label="Nom de l'utilisateur"
                     placeholder="Entrer le nom"
                     type="text"
-                    value={user.lastName}
+                    value={user.lastname}
                     onChange={handleChange}
-                    error={errors.lastName}
+                    error={errors.lastname}
                 />
                 <Field
                     name="email"
@@ -106,9 +107,9 @@ const UserPage = ({match, history}) => {
                     name="updateAt"
                     label="Mise à jour"
                     type="date"
-                    value={user.updateAt}
+                    value={user.updateat}
                     onChange={handleChange}
-                    error={errors.updateAt}
+                    error={errors.updateat}
                 />
 
                 <div className="form-group">
