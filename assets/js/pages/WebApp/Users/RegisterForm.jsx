@@ -10,18 +10,18 @@ const RegisterForm = ({history}) => {
     const formatDate = (str) => moment(str).format('DD-MM-YYYY');
 
     const [user, setUser] = useState({
-        firstName: "",
-        lastName: "",
+        firstname: "",
+        lastname: "",
         email: "",
         password: "",
         passwordConfirm: "",
-        createAt:formatDate(date),
-        updateAt:formatDate(date)
+        createat:formatDate(date),
+        updateat:formatDate(date)
     });
 
     const [errors, setErrors] = useState({
-        firstName: "",
-        lastName: "",
+        firstname: "",
+        lastname: "",
         email: "",
         password: "",
         passwordConfirm: ""
@@ -65,13 +65,13 @@ const RegisterForm = ({history}) => {
 
             <form onSubmit={handleSubmit}>
                 <Field
-                    name="firstName"
+                    name="firstname"
                     label="Prénom"
                     type="text"
                     placeholder="Entrez votre Prénom"
                     onChange={handleChange}
-                    value={user.firstName}
-                    error={errors.firstName}
+                    value={user.firstname}
+                    error={errors.firstname}
                 />
                 <Field
                     name="lastName"
@@ -79,8 +79,8 @@ const RegisterForm = ({history}) => {
                     type="text"
                     placeholder="Entrez votre nom"
                     onChange={handleChange}
-                    value={user.lastName}
-                    error={errors.lastName}
+                    value={user.lastname}
+                    error={errors.lastname}
                 />
                 <Field
                     name="email"

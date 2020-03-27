@@ -3,6 +3,7 @@ import moment from "moment";
 import Pagination from "../../../components/Pagination";
 import UsersAPI from "../../../services/WebApp/UsersAPI";
 import {Link} from "react-router-dom";
+import TableLoader from "../../../components/loaders/TableLoader";
 
 
 const UsersPage = (props) => {
@@ -11,11 +12,14 @@ const UsersPage = (props) => {
     const [users, setUsers] = useState([]);
     const [currentPage, setCurrentPage] = useState(1); // state pour initialiser le départ de la boucle de pagination
     const [search, setSearch] = useState("");
+    const [loading, setLoading] =useState(true);
 
     const fetchUsers = async () => {
         try {
             const data = await UsersAPI.findAll();
             setUsers(data);
+            setLoading(false);
+            console.log(data)
         } catch (error) {
             console.log(error.response)
         }
@@ -69,7 +73,7 @@ const UsersPage = (props) => {
         <>
             <div className="d-flex justify-content-between align-items-center mb-3">
                 <h1>Tableau de bord : <small>Gestion des utilisateurs</small></h1>
-                <Link to="/" className="btn btn-sm btn-secondary">Ajouter un adhérent</Link>
+                <Link to="/users/new" className="btn btn-sm btn-secondary">Ajouter un adhérent</Link>
             </div>
 
             <div className="form-group">
@@ -82,19 +86,19 @@ const UsersPage = (props) => {
                     <th>id</th>
                     <th>Nom et Prénom</th>
                     <th>Email</th>
-                    <th>compte actif</th>
+                    <th>Compte actif ?</th>
                     <th>Créer le</th>
                     <th>Modifier le</th>
                     <th></th>
                 </tr>
                 </thead>
-                <tbody>
+                {!loading && <tbody>
                 {paginatedUsers.map(user => (                                                    // La fonction map = for de symfony, key = Sur quelle clé le map doit il opérer.
                     <tr key={user.id}>
                         <td>{user.id}</td>
                         <td><a href="#">{user.firstname} {user.lastname}</a></td>
                         <td>{user.email}</td>
-                        <td>{user.isactive}</td>
+                        <td>{user.isactive > 0 && <p>Oui</p> || <p>Non</p> }</td>
                         <td>{formatDate(user.createat)}</td>
                         <td>{formatDate(user.updateat)}</td>
 
@@ -105,8 +109,9 @@ const UsersPage = (props) => {
                                 className="btn btn-sm btn-danger">Supprimer</button></td>
                     </tr>
                 ))}
-                </tbody>
+                </tbody>}
             </table>
+            {loading && <TableLoader/>}
 
             {itemsPerPage < filteredUsers.length && <Pagination
                 currentPage={currentPage}

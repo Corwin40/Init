@@ -2,6 +2,7 @@ import React, {useState, useContext} from 'react';
 import authAPI from "../services/authAPI";
 import AuthContext from "../contexts/AuthContext";
 import Field from "../components/forms/Fields";
+import {toast} from "react-toastify";
 
 const LoginPage = ({ history }) => {
 
@@ -28,9 +29,11 @@ const LoginPage = ({ history }) => {
             await authAPI.authenticate(credentials);
             setError("");
             setIsAuthenticated(true);
+            toast.success("Vous êtes Maintenant connecté.");
             history.replace("/home");
         }catch(error){
             console.log(error.response);
+            toast.error("Des erreurs sont apparues dans le formulaire !!");
             setError("Aucun compte n'existe avec cette adresse ou les informations ne correspondent pas ! ")
         }
     };

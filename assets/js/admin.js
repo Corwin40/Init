@@ -11,6 +11,8 @@ import RegisterForm from "./pages/WebApp/Users/RegisterForm";
 import AuthContext from "./contexts/AuthContext";
 import PrivateRoute from "./components/PrivateRoute";
 import authAPI from "./services/authAPI";
+import {toast, ToastContainer} from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css';
 
 //Appel Bootstrap - JQuery && dépendances
 const $ = require('jquery');
@@ -45,6 +47,7 @@ const Admin = () => {
                     />
                     <Route path="/register" component={RegisterForm}/>
 
+                    <PrivateRoute path="/users/new" component={UserPage} />
                     <PrivateRoute path="/users/:id" component={UserPage} />
                     <PrivateRoute path="/users" component={UsersPage} />
 
@@ -54,6 +57,7 @@ const Admin = () => {
                 </Switch>
             </main>
         </HashRouter>
+            <ToastContainer position={toast.POSITION.BOTTOM_CENTER}/>
         </AuthContext.Provider>
     );
 };

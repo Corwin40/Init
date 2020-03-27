@@ -6,6 +6,9 @@ import moment from "moment";
 
 const UserPage = ({match, history}) => {
 
+    let date = new Date();
+    const formatDate = (str) => moment(str).format('DD-MM-YYYY');
+
     // permet de vérifier route Ajout ou edition
     const {id = "new" } = match.params;
 
@@ -13,21 +16,23 @@ const UserPage = ({match, history}) => {
         firstname: "",
         lastname:"",
         email:"",
-        updateat:""
+        createat:formatDate(date),
+        updateat:formatDate(date)
     });
 
     const [errors, setErrors] = useState({
         firstname: "",
         lastname:"",
         email:"",
+        createat:"",
         updateat:""
     });
 
     // Récupère les données correspondant à l'id transmise pour une modification
     const fetchUser = async id =>{
         try{
-            const {firstname, lastname, email, updateat} = await UsersAPI.findOne(id);
-            setUser({firstname, lastname, email, updateat})
+            const {firstname, lastname, email} = await UsersAPI.findOne(id);
+            setUser({firstname, lastname, email})
         } catch (error) {
             console.log(error.response);
         }
@@ -74,10 +79,9 @@ const UserPage = ({match, history}) => {
                 {!editing && <h1>Ajout d'un utilisateur</h1> || <h1>Modification de l'utilisateur</h1>}
             </div>
 
-
             <form onSubmit={handleSubmit}>
                 <Field
-                    name="firstName"
+                    name="firstname"
                     label="Prénom de l'utilisateur"
                     placeholder="Entrer le prénom"
                     type="text"
@@ -86,7 +90,7 @@ const UserPage = ({match, history}) => {
                     error={errors.firstname}
                 />
                 <Field
-                    name="lastName"
+                    name="lastname"
                     label="Nom de l'utilisateur"
                     placeholder="Entrer le nom"
                     type="text"
@@ -103,14 +107,26 @@ const UserPage = ({match, history}) => {
                     onChange={handleChange}
                     error={errors.email}
                 />
+                {!editing &&
                 <Field
-                    name="updateAt"
+                    name="createat"
+                    label="Créer le"
+                    type="text"
+                    value={user.createat}
+                    onChange={handleChange}
+                    error={errors.createat}
+                />
+                ||
+                <Field
+                    name="updateat"
                     label="Mise à jour"
                     type="date"
                     value={user.updateat}
                     onChange={handleChange}
                     error={errors.updateat}
                 />
+                }
+
 
                 <div className="form-group">
                     {!editing && <button className="btn btn-sm btn-success mr-1">Ajouter</button> || <button className="btn btn-sm btn-success mr-1">Modifier</button>}
