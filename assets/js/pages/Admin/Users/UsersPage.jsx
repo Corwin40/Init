@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import moment from "moment";
 import Pagination from "../../../components/Pagination";
-import UsersAPI from "../../../services/WebApp/UsersAPI";
+import UsersAPI from "../../../services/Admin/UsersAPI";
 import {Link} from "react-router-dom";
 import TableLoader from "../../../components/loaders/TableLoader";
 

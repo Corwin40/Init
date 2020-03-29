@@ -2,7 +2,7 @@ import React, {useState, UseEffect} from 'react';
 import Field from "../../../components/forms/Fields";
 import {Link} from "react-router-dom";
 import moment from 'moment';
-import UsersAPI from "../../../services/WebApp/UsersAPI";
+import UsersAPI from "../../../services/Admin/UsersAPI";
 
 const RegisterForm = ({history}) => {
 

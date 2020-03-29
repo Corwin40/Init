@@ -3,7 +3,7 @@ import {Dropdown} from 'react-bootstrap';
 import authAPI from "../services/authAPI";
 import {NavLink} from "react-router-dom";
 import AuthContext from "../contexts/AuthContext";
-import UsersAPI from "../services/WebApp/UsersAPI";
+import UsersAPI from "../services/Admin/UsersAPI";
 import {toast} from "react-toastify";
 
 authAPI.setup();

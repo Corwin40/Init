@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import {Link} from "react-router-dom";
 import Field from "../../../components/forms/Fields";
-import UsersAPI from "../../../services/WebApp/UsersAPI";
+import UsersAPI from "../../../services/Admin/UsersAPI";
 import moment from "moment";
 
 const UserPage = ({match, history}) => {
