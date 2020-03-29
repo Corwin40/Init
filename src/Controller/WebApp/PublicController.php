@@ -12,6 +12,6 @@ class PublicController extends AbstractController
      */
     public function index()
     {
-        return $this->render('web_app/public/index.html.twig', []);
+        return $this->render('WebApp/index.html.twig', []);
     }
 }

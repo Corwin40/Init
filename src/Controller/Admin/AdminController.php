@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Controller\WebApp;
+namespace App\Controller\Admin;
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
@@ -12,6 +12,6 @@ class AdminController extends AbstractController
      */
     public function index()
     {
-        return $this->render('web_app/admin/index.html.twig', []);
+        return $this->render('Admin/index.html.twig', []);
     }
 }
