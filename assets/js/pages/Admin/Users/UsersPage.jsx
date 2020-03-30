@@ -4,6 +4,12 @@ import Pagination from "../../../components/Pagination";
 import UsersAPI from "../../../services/Admin/UsersAPI";
 import {Link} from "react-router-dom";
 import TableLoader from "../../../components/loaders/TableLoader";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faPlusCircle } from '@fortawesome/free-solid-svg-icons';
+import { faEdit } from '@fortawesome/free-solid-svg-icons';
+import { faUserTimes } from '@fortawesome/free-solid-svg-icons';
+
+
 
 
 const UsersPage = (props) => {
@@ -71,13 +77,20 @@ const UsersPage = (props) => {
 
     return(
         <>
-            <div className="d-flex justify-content-between align-items-center mb-3">
-                <h1>Tableau de bord : <small>Gestion des utilisateurs</small></h1>
-                <Link to="/users/new" className="btn btn-sm btn-secondary">Ajouter un adhérent</Link>
-            </div>
-
-            <div className="form-group">
-                <input type="text" onChange={handleSearch} value={search} className="form-control" placeholder="Rechercher ..."/>
+            <div className="row">
+                <div className="col-8">
+                    <div className="d-flex justify-content-between align-items-center mb-3">
+                        <h1>Tableau de bord : <small>Gestion des utilisateurs</small></h1>
+                    </div>
+                </div>
+                <div className="col-2">
+                    <div className="form-group">
+                        <input type="text" onChange={handleSearch} value={search} className="form-control" placeholder="Rechercher ..."/>
+                    </div>
+                </div>
+                <div className="col-2">
+                    <Link to="/users/new" className="btn btn-sm btn-secondary"><FontAwesomeIcon icon={faPlusCircle} /> Ajouter un adhérent</Link>
+                </div>
             </div>
 
             <table className="table table-hover">
@@ -101,12 +114,17 @@ const UsersPage = (props) => {
                         <td>{user.isactive > 0 && <p>Oui</p> || <p>Non</p> }</td>
                         <td>{formatDate(user.createat)}</td>
                         <td>{formatDate(user.updateat)}</td>
-
                         <td>
-                            <Link className="btn btn-sm btn-primary mr-1" to={"/users/" + user.id}>Editer</Link>
+                            <Link
+                                className="btn btn-sm btn-primary mr-1"
+                                to={"/users/" + user.id}><FontAwesomeIcon icon={faEdit} />
+                            </Link>
                             <button
                                 onClick={() => handleDelete(user.id)}                       // Active la fonction "handleDelete"
-                                className="btn btn-sm btn-danger">Supprimer</button></td>
+                                className="btn btn-sm btn-danger">
+                                <FontAwesomeIcon icon={faUserTimes} />
+                            </button>
+                        </td>
                     </tr>
                 ))}
                 </tbody>}
