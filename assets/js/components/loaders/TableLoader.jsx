@@ -7,7 +7,7 @@ const TableRow = props => {
         <ContentLoader
             viewBox="0 0 1060 40"
             height={40}
-            width={1060}
+            width={1920}
             speed={2}
             {...props}
         >

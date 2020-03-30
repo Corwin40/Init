@@ -29,7 +29,7 @@ const LoginPage = ({ history }) => {
             await authAPI.authenticate(credentials);
             setError("");
             setIsAuthenticated(true);
-            toast.success("Vous êtes Maintenant connecté.");
+            toast.success("Vous êtes maintenant connecté.");
             history.replace("/home");
         }catch(error){
             console.log(error.response);

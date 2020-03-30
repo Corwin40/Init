@@ -25,7 +25,6 @@ const UsersPage = (props) => {
             const data = await UsersAPI.findAll();
             setUsers(data);
             setLoading(false);
-            console.log(data)
         } catch (error) {
             console.log(error.response)
         }

@@ -31,8 +31,8 @@ const UserPage = ({match, history}) => {
     // Récupère les données correspondant à l'id transmise pour une modification
     const fetchUser = async id =>{
         try{
-            const {firstname, lastname, email} = await UsersAPI.findOne(id);
-            setUser({firstname, lastname, email})
+            const {firstname, lastname, email, isactive} = await UsersAPI.findOne(id);
+            setUser({firstname, lastname, email, isactive})
         } catch (error) {
             console.log(error.response);
         }
