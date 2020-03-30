@@ -12,7 +12,9 @@ const NavBar =({history}) => {
 
     const {isAuthenticated, setIsAuthenticated} = useContext(AuthContext);
 
-    const [user, setUser] = useState([]);
+    const [user, setUser] = useState(
+        authAPI.valueUser()
+    );
 
     const handleLogout = () => {
         authAPI.logout();
@@ -53,7 +55,7 @@ const NavBar =({history}) => {
                         <>
                             <Dropdown>
                                 <Dropdown.Toggle variant="default" id="dropdown-basic">
-                                    Mon Compte
+                                    Bienvenue {user.firstname} {user.lastname}
                                 </Dropdown.Toggle>
 
                                 <Dropdown.Menu alignRight>
