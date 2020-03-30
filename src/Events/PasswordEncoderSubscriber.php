@@ -3,7 +3,7 @@
 namespace App\Events;
 
 use ApiPlatform\Core\EventListener\EventPriorities;
-use App\Entity\WebApp\User;
+use App\Entity\Admin\User;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Symfony\Component\HttpKernel\Event\ViewEvent;
 use Symfony\Component\HttpKernel\KernelEvents;
