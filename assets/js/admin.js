@@ -13,6 +13,7 @@ import PrivateRoute from "./components/PrivateRoute";
 import authAPI from "./services/authAPI";
 import {toast, ToastContainer} from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
+import DashBoardPage from "./pages/DashBoardPage";
 
 //Appel Bootstrap - JQuery && dépendances
 const $ = require('jquery');
@@ -50,7 +51,7 @@ const Admin = () => {
                     <PrivateRoute path="/users/new" component={UserPage} />
                     <PrivateRoute path="/users/:id" component={UserPage} />
                     <PrivateRoute path="/users" component={UsersPage} />
-
+                    <PrivateRoute path="/dashboard" component={DashBoardPage} />
                     <Route path="/home" component={HomePage}/>
 
                     <Route path="/" component={LoginPage}/>
