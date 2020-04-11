@@ -30,7 +30,7 @@ const LoginPage = ({ history }) => {
             setError("");
             setIsAuthenticated(true);
             toast.success("Vous êtes maintenant connecté.");
-            history.replace("/home");
+            history.replace("/dashboard");
         }catch(error){
             console.log(error.response);
             toast.error("Des erreurs sont apparues dans le formulaire !!");

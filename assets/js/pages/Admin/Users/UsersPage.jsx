@@ -77,8 +77,8 @@ const UsersPage = (props) => {
     return(
         <>
             <div className="row">
-                <div className="col-8">
-                    <div className="d-flex justify-content-between align-items-center mb-3">
+                <div className="col-12">
+                    <div className="alert alert-dismissible alert-light d-flex justify-content-between align-items-center mb-3">
                         <h1>Tableau de bord : <small>Gestion des utilisateurs</small></h1>
                     </div>
                 </div>
@@ -108,7 +108,7 @@ const UsersPage = (props) => {
                 {paginatedUsers.map(user => (                                                    // La fonction map = for de symfony, key = Sur quelle clé le map doit il opérer.
                     <tr key={user.id}>
                         <td>{user.id}</td>
-                        <td><a href="#">{user.firstname} {user.lastname}</a></td>
+                        <td><Link to={"/users/" + user.id}>{user.firstname} {user.lastname}</Link></td>
                         <td>{user.email}</td>
                         <td>{user.isactive > 0 && <p>Oui</p> || <p>Non</p> }</td>
                         <td>{formatDate(user.createat)}</td>

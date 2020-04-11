@@ -16,6 +16,7 @@ const UserPage = ({match, history}) => {
         firstname: "",
         lastname:"",
         email:"",
+        isactive:"",
         createat:formatDate(date),
         updateat:formatDate(date)
     });
@@ -24,6 +25,7 @@ const UserPage = ({match, history}) => {
         firstname: "",
         lastname:"",
         email:"",
+        isactive:"",
         createat:"",
         updateat:""
     });
@@ -31,8 +33,8 @@ const UserPage = ({match, history}) => {
     // Récupère les données correspondant à l'id transmise pour une modification
     const fetchUser = async id =>{
         try{
-            const {firstname, lastname, email, isactive} = await UsersAPI.findOne(id);
-            setUser({firstname, lastname, email, isactive})
+            const {firstname, lastname, email, isactive, updateat} = await UsersAPI.findOne(id);
+            setUser({firstname, lastname, email, isactive, updateat})
         } catch (error) {
             console.log(error.response);
         }
@@ -120,8 +122,8 @@ const UserPage = ({match, history}) => {
                 <Field
                     name="updateat"
                     label="Mise à jour"
-                    type="date"
-                    value={user.updateat}
+                    type="text"
+                    value={formatDate(date)}
                     onChange={handleChange}
                     error={errors.updateat}
                 />

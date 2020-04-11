@@ -1,0 +1,37 @@
+/*****
+*
+*   Règles Scss pour la gestion de taille de contenu "condensed" || "large"
+*
+ */
+
+$space : 15em;
+
+/*** Block OpAside***/
+#OpAside {
+  position: absolute;
+  width: $space;
+  top: 0em;
+  left: 0em;
+  height: 100vh;
+  transition: right 0.2s;
+}
+#OpAside > header{
+  border-bottom: #fcf8e3 1px solid
+}
+
+#OpAside .nav-link2 {
+  display: block;
+  padding: 0.5rem 0.9rem;
+}
+
+#OpAside .nav-link2 a{
+
+}
+
+/*** Block OpMain ***/
+#OpMain{
+  position: absolute;
+  width: calc(100% - #{$space});
+  top: 0em;
+  left: $space;
+}

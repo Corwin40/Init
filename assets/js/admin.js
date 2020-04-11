@@ -14,6 +14,7 @@ import authAPI from "./services/authAPI";
 import {toast, ToastContainer} from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
 import DashBoardPage from "./pages/DashBoardPage";
+import Aside from "./components/Aside";
 
 //Appel Bootstrap - JQuery && dépendances
 const $ = require('jquery');
@@ -37,26 +38,28 @@ const Admin = () => {
             setIsAuthenticated: setIsAuthenticated
         }}>
         <HashRouter>
-            <NavBarWithRouter/>
+            <Aside/>
+            <main id={"OpMain"}>
+                <NavBarWithRouter/>
+                <div className="container-fluid pt-3">
+                    <Switch>
+                        <Route path="/login"
+                               render={props=>(<LoginPage onLogin={setIsAuthenticated} {...props} />
+                               )}
+                        />
+                        <Route path="/register" component={RegisterForm}/>
 
-            <main className="container-fluid pt-5">
-                <Switch>
+                        <PrivateRoute path="/users/new" component={UserPage} />
+                        <PrivateRoute path="/users/:id" component={UserPage} />
+                        <PrivateRoute path="/users" component={UsersPage} />
+                        <PrivateRoute path="/dashboard" component={DashBoardPage} />
+                        <Route path="/home" component={HomePage}/>
 
-                    <Route path="/login"
-                           render={props=>(<LoginPage onLogin={setIsAuthenticated} {...props} />
-                           )}
-                    />
-                    <Route path="/register" component={RegisterForm}/>
-
-                    <PrivateRoute path="/users/new" component={UserPage} />
-                    <PrivateRoute path="/users/:id" component={UserPage} />
-                    <PrivateRoute path="/users" component={UsersPage} />
-                    <PrivateRoute path="/dashboard" component={DashBoardPage} />
-                    <Route path="/home" component={HomePage}/>
-
-                    <Route path="/" component={LoginPage}/>
-                </Switch>
+                        <Route path="/" component={LoginPage}/>
+                    </Switch>
+                </div>
             </main>
+
         </HashRouter>
             <ToastContainer position={toast.POSITION.BOTTOM_CENTER}/>
         </AuthContext.Provider>
